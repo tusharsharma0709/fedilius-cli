@@ -17,7 +17,9 @@ require("dotenv").config();
 const binPath = process.env.binPath//`"C:\\Users\\ASUS\\Music\\fidelius-cli (2)\\fidelius-cli\\examples\\fidelius-cli-1.2.0\\bin\\fidelius-cli"`
 const execFideliusCli = (args) => {
 	const execOptions = { encoding: "utf-8", shell: true };
-	const fideliusCommand = `${binPath} ${args.join(" ")}`;
+	fideliusCommand = binPath+" "+"gkm";
+	args.unshift(...[ args.join(" ")]);
+	console.log(fideliusCommand)
 
 	const result = execSync(fideliusCommand, execOptions);
 	try {
