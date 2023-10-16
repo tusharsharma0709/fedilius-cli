@@ -1,0 +1,25 @@
+# Use an official Node.js runtime as the base image
+FROM node:20  # Replace with your Node.js version
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install application dependencies
+RUN npm install
+
+# Install fidelius-cli (modify this to match the correct installation method)
+# For example, if you have fidelius-cli in your project directory:
+COPY fidelius-cli-1.2.0 /app/fidelius-cli-1.2.0
+ENV binPath /app/fidelius-cli-1.2.0/bin/fidelius-cli
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port your application will run on
+EXPOSE 3000  # Change to your app's port
+
+# Define the command to start your Node.js application
+CMD [ "node", "app.js" ]
